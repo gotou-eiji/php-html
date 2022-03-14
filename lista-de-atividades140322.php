@@ -77,7 +77,7 @@
                 $vp2 = $_POST['produto2'];
                 $cvp1 = ($vp1 / 100) * 8;
                 $cvp2 = ($vp2 / 100) * 11;
-                $vf = $cvp1 + $cvp2;
+                $vf = $cvp1 - $cvp2;
                 echo "Valor final para ser pago: $vf";
             }else {
                 echo "";
