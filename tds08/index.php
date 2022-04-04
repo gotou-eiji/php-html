@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     </head>
         <body>
             <center><h3>SisArray - TDS08</h3></center>
@@ -35,7 +35,37 @@
             <h4 class="my-0 fw-normal"><svg<b>Registro</b></h4>
           </div>
           <div class="card-body text-start">
-          Corpo da div
+          <table class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Idade</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                $arquivo = fopen("dados.txt","r");
+                while(!feof($arquivo)){
+                    $linha = fgets($arquivo);
+                }
+                $dados = explode(";",$linha);
+                fclose($arquivo);
+                // echo "<br/><br/>";
+                $conta = count($dados)-2;
+                for($i=0;$i<=$conta;$i++){
+                    $posicao = $i;
+                    echo '<tr>';
+                        echo '<td>'.$dados[$i].'</td>';
+                        $i++;
+                        echo '<td>'.$dados[$i].'</td>';
+                        echo '<td>Editar | <a href="excluir.php?pos='.$posicao.'">Excluir</a></td>';
+                    echo '</tr>';
+                }
+                ?>
+                </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -52,19 +82,6 @@
                 fclose($file);
             }else {
                 echo "";
-            }
-            $arquivo = fopen("dados.txt","r");
-            while(!feof($arquivo)){
-                $linha = fgets($arquivo);
-            }
-            $dados = explode(";",$linha);
-            fclose($arquivo);
-            echo "<br/><br/>";
-            $conta = count($dados)-2;
-            for($i=0;$i<=$conta;$i++){
-                echo "Nome: ".$dados[$i]."<br/>";
-                $i++;
-                echo "Idade: ".$dados[$i]."<br/>";
             }
         ?>
     </body>
