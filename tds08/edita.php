@@ -1,14 +1,16 @@
 <?php
-    $posicao = $_GET['pos'];
-    $posicao2 = $posicao+1;
+    $pos = $_GET['pos'];
+    $pos2 = $pos+1;
+    $nome = $_POST['nome'];
+    $idade = $_POST['idade'];
     $arquivo = fopen("dados.txt", "r");
     while(!feof($arquivo)){
         $linha = fgets($arquivo);
     }
     $dados = explode(";", $linha);
     fclose($arquivo);
-    unset($dados[$posicao]);
-    unset($dados[$posicao2]);
+    $dados[$pos] = $nome;
+    $dados[$pos2] = $idade;
     $array = array_filter($dados);
     $file = 'dados.txt';
     unlink($file);

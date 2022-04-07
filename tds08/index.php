@@ -1,6 +1,7 @@
 <html>
     <head>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     </head>
         <body>
             <center><h3>SisArray - TDS08</h3></center>
@@ -23,6 +24,19 @@
                 <input type="number" name="idade" class="form-control" placeholder="Digite sua idade" required/><br/><br/>
                 <button type="submit" name="gravar" class="btn btn-outline-dark">Gravar</button>
             </form>
+            <?php
+            if(isset($_POST['gravar'])){
+                $nome = $_POST['nome'];
+                $idade = $_POST['idade'];
+                $arquivo = 'dados.txt';
+                $texto = $nome.";".$idade.";";
+                $file = fopen($arquivo, 'a');
+                fwrite($file, $texto);
+                fclose($file);
+            }else {
+                echo "";
+            }
+            ?>
           </div>
         </div>
       </div>
@@ -60,7 +74,7 @@
                         echo '<td>'.$dados[$i].'</td>';
                         $i++;
                         echo '<td>'.$dados[$i].'</td>';
-                        echo '<td>Editar | <a href="excluir.php?pos='.$posicao.'">Excluir</a></td>';
+                        echo '<td><a href="editar.php?pos='.$posicao.'">Editar</a> | <a href="excluir.php?pos='.$posicao.'">Excluir</a></td>';
                     echo '</tr>';
                 }
                 ?>
@@ -71,18 +85,5 @@
       </div>
     </div>
    </div>
-        <?php
-            if(isset($_POST['gravar'])){
-                $nome = $_POST['nome'];
-                $idade = $_POST['idade'];
-                $arquivo = 'dados.txt';
-                $texto = $nome.";".$idade.";";
-                $file = fopen($arquivo, 'a');
-                fwrite($file, $texto);
-                fclose($file);
-            }else {
-                echo "";
-            }
-        ?>
     </body>
 </html>
