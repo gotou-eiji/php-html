@@ -2,12 +2,23 @@
     <body>
         <h3>Teste de Banco - TDS08</h3>
         <hr/>
-        <form action="cadastra.php" method="POST">
+        <?php
+            include 'conecta.php';
+            $id = $_GET['id'];
+            $sql = "SELECT * FROM usuario WHERE id=$id";
+            $query = $conn->query($sql);
+            while($dados = $query->fetch_assoc()){
+                $id = $dados['id'];
+                $nome = $dados['nome'];
+                $idade = $dados['idade'];
+            }
+        ?>
+        <form action="ed.php?id=<?php echo $id; ?>" method="POST">
             Nome<br/>
-            <input type="text" name="nome"/><br/>
+            <input type="text" name="nome" value="<?php echo $nome; ?>"/><br/>
             Idade<br/>
-            <input type="number" name="idade"/><br/><br/>
-            <input type="submit" value="Cadastrar"/>
+            <input type="number" name="idade" value="<?php echo $idade; ?>"/><br/><br/>
+            <input type="submit" value="Atualizar"/>
         </form>
         <br/>
         <table border="1">
